@@ -1,10 +1,11 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'org.greenrobot.greendao' // greendao plugin
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.example.wangzw.mybase"
+        multiDexEnabled false //TODO true 为开启分包
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
@@ -31,4 +32,6 @@ dependencies {
 
     //日志库
     compile 'com.orhanobut:logger:1.15'
+    //greendao数据库
+    compile 'org.greenrobot:greendao:3.2.2'
 }

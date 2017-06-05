@@ -1,8 +1,9 @@
-package com.example.wangzw.mybase;
+package com.example.wangzw.mybase.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.wangzw.mybase.R;
 import com.just.library.ActivityManager;
 import com.just.library.PixelActivityUnion;
 import com.just.library.PointActivity;
@@ -10,7 +11,6 @@ import com.orhanobut.logger.Logger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,8 +20,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        testOnePixel();
+        testLogger();
+
+    }
+
+    /**
+     * 测试一像素保活功能
+     */
+    private void testOnePixel() {
+        //打开
         openOnePixelActivity();
+        //关闭
 //        closeOnePixelActivity();
+    }
+
+    /**
+     * 测试logger日志功能
+     */
+    private void testLogger() {
         Logger.i("onCreate");
         Logger.v("onCreate");
         Logger.d("onCreate");
@@ -29,11 +46,10 @@ public class MainActivity extends AppCompatActivity {
         // 打印json格式
         String json = createJson().toString();
         Logger.json(json);
-
     }
 
 
-    // 创建json数据
+    // 创建json测试数据
     private JSONObject createJson() {
         try {
             JSONObject person = new JSONObject();
@@ -50,12 +66,9 @@ public class MainActivity extends AppCompatActivity {
         }
         return null;
     }
-    private void closeOnePixelActivity() {
-        PixelActivityUnion.quit();
-    }
 
     /**
-     * 一像素activity 用于保活
+     * 打开一像素保活功能
      */
     private void openOnePixelActivity() {
         PixelActivityUnion
@@ -64,5 +77,12 @@ public class MainActivity extends AppCompatActivity {
                 .args(null)
                 .setActiviyManager(ActivityManager.getInstance())
                 .start();
+    }
+
+    /**
+     * 关闭一像素保活功能
+     */
+    private void closeOnePixelActivity() {
+        PixelActivityUnion.quit();
     }
 }
