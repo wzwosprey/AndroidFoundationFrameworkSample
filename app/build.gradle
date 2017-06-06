@@ -34,4 +34,6 @@ dependencies {
     compile 'com.orhanobut:logger:1.15'
     //greendao数据库
     compile 'org.greenrobot:greendao:3.2.2'
+    //沉浸式状态栏
+    compile 'com.jaeger.statusbarutil:library:1.4.0'
 }
