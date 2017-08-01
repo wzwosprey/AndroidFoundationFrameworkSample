@@ -20,6 +20,13 @@ android {
     }
 }
 
+greendao{
+    //TODO 别忘了更新时SCHEMA_VERSION加1,不然不会执行更新
+    schemaVersion 3
+    targetGenDir 'src/main/java'
+    daoPackage 'com.example.wangzw.mybase.greendao.gen'
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -29,11 +36,11 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile project(path: ':pixelsdk')
-
     //日志库
     compile 'com.orhanobut:logger:1.15'
     //greendao数据库
     compile 'org.greenrobot:greendao:3.2.2'
     //沉浸式状态栏
     compile 'com.jaeger.statusbarutil:library:1.4.0'
+    compile files('libs/gdx-setup.jar')
 }

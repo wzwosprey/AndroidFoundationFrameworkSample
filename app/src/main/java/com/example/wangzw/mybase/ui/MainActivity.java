@@ -1,9 +1,11 @@
 package com.example.wangzw.mybase.ui;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.wangzw.mybase.R;
+import com.example.wangzw.mybase.greendao.entity.UserInfoGreenDaoBean;
+import com.example.wangzw.mybase.greendao.utils.UserInfoOperator;
 import com.just.library.ActivityManager;
 import com.just.library.PixelActivityUnion;
 import com.just.library.PointActivity;
@@ -22,7 +24,16 @@ public class MainActivity extends AppCompatActivity {
 
         testOnePixel();
         testLogger();
+        testDB();
+    }
 
+    private void testDB() {
+        for (int i = 0; i < 5; i++) {
+            UserInfoGreenDaoBean userInfoGreenDaoBean = new UserInfoGreenDaoBean();
+            userInfoGreenDaoBean.setUserId("00" + i);
+            userInfoGreenDaoBean.setAge(i);
+            UserInfoOperator.getInstance().addData(userInfoGreenDaoBean);
+        }
     }
 
     /**
