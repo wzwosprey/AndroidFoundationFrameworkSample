@@ -102,8 +102,8 @@
 }
 
 #1.实体类
-#-keep com.zhjy.neighborhoodapp.beans.** { *; }
-#-keep com.zhjy.neighborhoodapp.greendao.entity.** { *; }
+#-keep class com.zhjy.neighborhoodapp.beans.** { *; }
+#-keep class com.zhjy.neighborhoodapp.greendao.entity.** { *; }
 
 #2.第三方包
 
