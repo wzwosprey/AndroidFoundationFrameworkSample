@@ -2,10 +2,14 @@ package com.example.wangzw.mybase.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ListView;
 
 import com.example.wangzw.mybase.R;
+import com.example.wangzw.mybase.adapter.FirstAdapter;
+import com.example.wangzw.mybase.base.baseadapter.CommonAdapter;
 import com.example.wangzw.mybase.greendao.entity.UserInfoGreenDaoBean;
 import com.example.wangzw.mybase.greendao.utils.UserInfoOperator;
+import com.example.wangzw.mybase.utils.ToastUtils;
 import com.just.library.ActivityManager;
 import com.just.library.PixelActivityUnion;
 import com.just.library.PointActivity;
@@ -14,24 +18,34 @@ import com.orhanobut.logger.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    private ListView mListView;
+    private CommonAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         testOnePixel();
         testLogger();
         testDB();
+
+        List allData = UserInfoOperator.getInstance().getAllData();
+        mListView = (ListView) findViewById(R.id.id_listview_list);
+        mListView.setDivider(null);
+        mListView.setAdapter(new FirstAdapter(this, allData));
     }
 
     private void testDB() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 100; i++) {
             UserInfoGreenDaoBean userInfoGreenDaoBean = new UserInfoGreenDaoBean();
             userInfoGreenDaoBean.setUserId("00" + i);
             userInfoGreenDaoBean.setAge(i);
+            userInfoGreenDaoBean.setGender(i % 2);
             UserInfoOperator.getInstance().addData(userInfoGreenDaoBean);
         }
     }
@@ -71,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
             address.put("city", "xiamen");
             person.put("address", address);
             person.put("married", true);
+            ToastUtils.setBgResource(R.drawable.bg_custom_toast);
+            ToastUtils.showLong(person.toString());
             return person;
         } catch (JSONException e) {
             Logger.e(e, "create json error occured");

@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.example.wangzw.mybase.greendao.utils.DataBaseConstant;
 import com.example.wangzw.mybase.greendao.utils.DatabaseLoader;
+import com.example.wangzw.mybase.utils.AppUtils;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 
@@ -38,6 +39,9 @@ public class MyApplication extends Application {
         super.onCreate();
         app = this;
 
+        //初始化工具类
+        AppUtils.init(app);
+        //初始化日志工具
         initLogger();
         //初始化数据库
         DatabaseLoader.setupDataBase(app, DataBaseConstant.MYBASE_DATEBASE_NAME);
